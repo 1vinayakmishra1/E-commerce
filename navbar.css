@@ -1,0 +1,132 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  background-color: #131921;
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 15px;
+  height: 60px;
+}
+.header-left{
+  height: 35px;
+  color: white;
+  display: flex;
+  flex: 0.5;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: 80px;
+  flex-shrink: 0;
+}
+.logo-img {
+  object-fit: contain;
+  cursor: pointer;
+}
+.search-icon {
+  width: 22px;
+}
+.header-center{
+  display: flex;
+  flex: 4;
+  justify-content: center;
+  gap: 0;
+  align-items: center;
+}
+.header-right{
+  display: flex;
+  flex: 0.75;
+  justify-content: center;
+  gap: 0.5rem;
+  align-items: center;
+  min-width: 120px;
+  flex-shrink: 0;
+  margin-left: 2px;
+}
+.input-bar {
+  width: 60%;
+  font-size: 1rem;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border: none;
+  padding: 10px 15px;
+  height: 40px;
+}
+.input-btn {
+  cursor: pointer;
+  width: 45px;
+  height: 40px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border: none;
+  background-color: rgb(255, 191, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.returns-btn {
+  cursor: pointer;
+  background-color: #131921;
+  border: none;
+  white-space: normal;
+  overflow-wrap: break-word;
+  color: white;
+  text-align: left;
+  min-width: 60px;
+  flex-shrink: 0;
+}
+.cart-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  height: 35px;
+  min-width: 95px;
+  padding: 0 8px;
+  cursor: pointer;
+  background-color: #131921;
+  border: none;
+  color: white;
+  position: relative;
+  flex-shrink: 0;
+}
+.cart-btn-img {
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
+}
+.cart-icon {
+  height: 30px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.cart-text {
+  font-weight: 700;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.cart-items {
+  font-weight: 700;
+  font-size: 1rem;
+  position: absolute;
+  top: 5px;
+  right: 60px;
+  color: #ff9900;
+  line-height: 1;
+  min-width: 20px;
+  text-align: center;
+  transform: translate(50%, -50%);
+}

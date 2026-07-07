@@ -14,19 +14,19 @@ async function getProduct() {
       `<div class="product-container">
 
         <div class="product-img-div">
-          <img src="https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/1.webp" alt="" class="product-img">
+          <img src="${product.thumbnail}" class="product-img">
         </div>
 
         <div class="product-name">
-        Black and Gray Athletic Cotton Socks - 6 Pairs
+        ${product.title}
         </div>
 
         <div class="product-ratings">
-        <img src="assets/ratings/rating-30.png" alt="">
+        <img src="assets/ratings/rating-${((Math.round(product.rating * 2) / 2)*10)}.png" alt="">
         </div>
 
         <div class="price-div">
-        $10
+        $${product.price}
         </div>
 
         <div class="dropdown">

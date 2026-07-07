@@ -10,7 +10,7 @@ body, html {
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
 .product-container {
@@ -55,21 +55,24 @@ body, html {
   display: block;
   margin-bottom: 10px;
 }
-.add-to-cart{
-  margin-top: auto;
+.add-to-cart {
+  align-self: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 20px;
-  background-color: #ff9900;
+  padding: 10px 0px;
+  width: 90%;
+  max-width: 90%;
+  background-color: rgb(255, 191, 0);
   border: none;
-  border-radius: 5px;
+  border-radius: 25px;
   cursor: pointer;
   color: #131921;
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+  margin-top: 25%;
 }
-.price-div{
+.price-div {
   font-weight: 700;
   margin-bottom: 10px;
 }

@@ -123,10 +123,16 @@
   font-size: 1rem;
   position: absolute;
   top: 5px;
-  right: 60px;
+  right: 58px;
   color: #ff9900;
   line-height: 1;
   min-width: 20px;
   text-align: center;
   transform: translate(50%, -50%);
 }
+.cart-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+}
+

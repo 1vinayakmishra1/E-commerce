@@ -1,3 +1,5 @@
+import { addToCart } from "./cart.js";
+
 async function getProduct() {
   const response = await fetch(`https://dummyjson.com/products`);
   const data = await response.json();
@@ -31,7 +33,7 @@ async function getProduct() {
 
         <div class="dropdown">
 
-          <select name="numbers" id="numbers">
+          <select name="numbers" id="${product.id}">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -46,13 +48,14 @@ async function getProduct() {
 
         </div>
 
-          <button class="add-to-cart">
+          <button class="add-to-cart js-add-to-cart">
           Add to Cart
           </button>
           
       </div>`;
   });
   document.querySelector('.js-products-grid').innerHTML = productsHTML;
+  addToCart();
 }
 
 getProduct();

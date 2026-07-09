@@ -33,7 +33,7 @@ async function getProduct() {
 
         <div class="dropdown">
 
-          <select name="numbers" id="${product.id}">
+          <select name="numbers" id="${product.id}" class="js-product-quantity">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -48,7 +48,7 @@ async function getProduct() {
 
         </div>
 
-          <button class="add-to-cart js-add-to-cart">
+          <button class="add-to-cart js-add-to-cart" data-product-id="${product.id}">
           Add to Cart
           </button>
           

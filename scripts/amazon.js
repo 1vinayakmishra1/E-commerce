@@ -1,16 +1,23 @@
 import { addToCart } from "./cart.js";
 
+let allProducts = [];
+
 async function getProduct() {
-  const response = await fetch(`https://dummyjson.com/products`);
+  const response = await fetch(`https://dummyjson.com/products?limit=200`);
   const data = await response.json();
 
    console.log(data);
   
-  const products = data.products;
+  allProducts = data.products;
+  renderProducts(allProducts);
+}
 
+
+function renderProducts(productsToRender) {
+  
   let productsHTML = '';
 
-  products.forEach((product) => {
+  productsToRender.forEach((product) => {
 
     productsHTML += 
       `<div class="product-container">
@@ -28,7 +35,7 @@ async function getProduct() {
         </div>
 
         <div class="price-div">
-        $${product.price}
+        $${(product.price)}
         </div>
 
         <div class="dropdown">
@@ -59,3 +66,79 @@ async function getProduct() {
 }
 
 getProduct();
+
+
+const inputBar = document.querySelector('.js-input-bar');
+const inputbtn = document.querySelector('.js-input-btn');
+const suggestionsContainer = document.querySelector('.js-autocomplete-suggestions')
+
+function searchQuery() {
+    
+    const filterValue = inputBar.value.toLowerCase();
+    
+    const filteredProducts = allProducts.filter(product => {
+      
+      const matchesTitle = product.title.toLowerCase().includes(filterValue);
+      const matchesDescription = product.description.toLowerCase().includes(filterValue);
+      const matchesTags = product.tags && product.tags.some(tag => tag.toLowerCase().includes(filterValue));
+      
+      return matchesTitle || matchesDescription || matchesTags;
+
+    });
+    renderProducts(filteredProducts);
+}
+inputbtn.addEventListener('click', () => {
+  searchQuery();
+  inputBar.value = '';
+  suggestionsContainer.innerHTML = '';
+});
+
+inputBar.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    searchQuery();
+    inputBar.value = '';
+    suggestionsContainer.innerHTML = '';
+  }
+});
+
+
+function setupAutoComplete() {
+
+  const filterValue = inputBar.value.toLowerCase();
+
+  if (!filterValue) {
+    suggestionsContainer.innerHTML = '';
+    return;
+  }
+
+  const matchingSuggestions = allProducts.filter(product => {
+    return product.title.toLowerCase().includes(filterValue)
+  }).slice(0, 5);
+
+  let suggestionHTMl = '';
+  
+  matchingSuggestions.forEach((product) => {
+    suggestionHTMl += `
+    <div class="autocomplete-item" data-suggestion="${product.title}">${product.title}</div>`;
+  });
+  suggestionsContainer.innerHTML = suggestionHTMl;
+
+  document.querySelectorAll('.autocomplete-item').forEach(item => {
+    item.addEventListener('click', () => {
+      inputBar.value = item.dataset.suggestion;
+      searchQuery();
+      suggestionsContainer.innerHTML = '';
+    })
+  })
+}
+
+inputBar.addEventListener('input', () => {
+  setupAutoComplete();
+});
+
+document.addEventListener('click', (event) => {
+  if (!suggestionsContainer.contains(event.target) && event.target !== inputBar) {
+    suggestionsContainer.innerHTML = '';
+  }
+})
+

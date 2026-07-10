@@ -60,6 +60,27 @@
   padding: 10px 15px;
   height: 40px;
 }
+.autocomplete-suggestions {
+  display: block;
+  position: absolute;
+  top: 53px;
+  left: 360px;
+  width: 676px;
+  background-color: #eef0f0;
+  color: black;
+  cursor: pointer;
+  height: auto;
+}
+.autocomplete-item {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 15px 5px 15px;
+  border-bottom: 1px solid;
+  font-weight: 500;
+}
+.autocomplete-item:hover {
+font-weight: 700;
+}
 .input-btn {
   cursor: pointer;
   width: 45px;

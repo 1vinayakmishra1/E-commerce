@@ -140,5 +140,20 @@ document.addEventListener('click', (event) => {
   if (!suggestionsContainer.contains(event.target) && event.target !== inputBar) {
     suggestionsContainer.innerHTML = '';
   }
-})
+});
+
+  const themeBtn = document.querySelector('.js-theme-btn');
+  themeBtn.innerHTML = `<img src="assets/icons/moon-svgrepo-com.svg" alt="">`
+  const body = document.body;
+
+  themeBtn.addEventListener('click', () => {
+    if (body.classList.contains('background-theme-on')) {
+      body.classList.remove('background-theme-on');
+      themeBtn.innerHTML = `<img src="assets/icons/moon-svgrepo-com.svg" alt="">`
+    } else {
+      body.classList.add('background-theme-on');
+      themeBtn.innerHTML = `<img src="assets/icons/sun-svgrepo-com.svg" alt="">`
+    }
+  });
+
 

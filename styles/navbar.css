@@ -156,4 +156,12 @@ font-weight: 700;
   color: inherit;
   display: flex;
 }
-
+.theme-btn {
+  background-color: #131921;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.theme-btn img {
+  max-width: 100%;
+}

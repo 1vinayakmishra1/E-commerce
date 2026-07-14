@@ -1,4 +1,5 @@
 import { addToCart } from "./cart.js";
+import { getCartTotalQuantity } from "./cart.js";
 
 let allProducts = [];
 
@@ -20,7 +21,7 @@ function renderProducts(productsToRender) {
   productsToRender.forEach((product) => {
 
     productsHTML += 
-      `<div class="product-container">
+      `<div class="product-container js-product-container data-${product.id}">
 
         <div class="product-img-div">
           <img src="${product.thumbnail}" class="product-img">
@@ -62,10 +63,28 @@ function renderProducts(productsToRender) {
       </div>`;
   });
   document.querySelector('.js-products-grid').innerHTML = productsHTML;
-  addToCart();
+  const addBtn = document.querySelectorAll('.js-add-to-cart');
+
+  addBtn.forEach((button) => {
+    button.addEventListener('click', (event) => {
+      const productId = event.target.dataset.productId;
+
+      const quantity = Number(document.getElementById(productId).value);
+
+      addToCart(productId, quantity);
+      updateCartQuantityDisplay();
+    });
+  });
+}
+
+function updateCartQuantityDisplay() {
+  const totalItems = getCartTotalQuantity();
+
+  document.querySelector('.js-cart-items').innerHTML = totalItems;
 }
 
 getProduct();
+updateCartQuantityDisplay();
 
 
 const inputBar = document.querySelector('.js-input-bar');
@@ -144,16 +163,22 @@ document.addEventListener('click', (event) => {
 
   const themeBtn = document.querySelector('.js-theme-btn');
   themeBtn.innerHTML = `<img src="assets/icons/moon-svgrepo-com.svg" alt="">`
-  const body = document.body;
+  const main = document.querySelector('.main');
 
   themeBtn.addEventListener('click', () => {
-    if (body.classList.contains('background-theme-on')) {
-      body.classList.remove('background-theme-on');
+    themeChange();
+  });
+
+  function themeChange() {
+    if (main.classList.contains('background-theme-on')) {
+      main.classList.remove('background-theme-on');
       themeBtn.innerHTML = `<img src="assets/icons/moon-svgrepo-com.svg" alt="">`
     } else {
-      body.classList.add('background-theme-on');
+      main.classList.add('background-theme-on');
       themeBtn.innerHTML = `<img src="assets/icons/sun-svgrepo-com.svg" alt="">`
     }
-  });
+  }
+
+
 
 

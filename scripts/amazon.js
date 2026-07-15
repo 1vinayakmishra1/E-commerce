@@ -10,6 +10,7 @@ async function getProduct() {
    console.log(data);
   
   allProducts = data.products;
+  localStorage.setItem('allProducts', JSON.stringify(allProducts));
   renderProducts(allProducts);
 }
 

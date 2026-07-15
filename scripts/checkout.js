@@ -1,4 +1,5 @@
 import { cart } from "./cart.js";
+import { getCartTotalQuantity } from "./cart.js";
 const allProducts = JSON.parse(localStorage.getItem('allProducts'));
 
 export function renderOrderSummary() {
@@ -59,5 +60,7 @@ export function renderOrderSummary() {
     }
   });
   document.querySelector('.js-cart-summary').innerHTML = cartItemsHTML;
+  const totalItems = getCartTotalQuantity();
+  document.querySelector('.js-header-center').innerHTML = `Checkout (<span class='cartQuantityItems'>${totalItems} items</span>)`;
 }
 renderOrderSummary();

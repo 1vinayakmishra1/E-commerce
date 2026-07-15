@@ -2,6 +2,7 @@ body {
   font-family: Roboto, Arial;
   color: rgb(33, 33, 33);
   margin: 0;
+  margin-bottom: 30px;
 }
 *, *::before, *::after {
   box-sizing: border-box;
@@ -10,6 +11,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: white;
   height: 60px;
   padding-right: 30px;
   padding-left: 30px;

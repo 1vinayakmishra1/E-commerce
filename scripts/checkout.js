@@ -25,8 +25,8 @@ export function renderOrderSummary() {
           <div class="product-price">$${matchingProduct.price}</div>
           <div class="product-quantity">
             Quantity: ${cartItem.quantity} 
-            <button class="update-btn">Update</button>
-            <button class="delete-btn">Delete</button>
+            <button class="update-btn js-update-btn">Update</button>
+            <button class="delete-btn js-delete-btn" data-product-id="${matchingProduct.id}">Delete</button>
           </div>
         </div>
 
@@ -61,6 +61,22 @@ export function renderOrderSummary() {
   });
   document.querySelector('.js-cart-summary').innerHTML = cartItemsHTML;
   const totalItems = getCartTotalQuantity();
-  document.querySelector('.js-header-center').innerHTML = `Checkout (<span class='cartQuantityItems'>${totalItems} items</span>)`;
+  const cartHeader = document.querySelector('.js-header-center');
+  cartHeader.innerHTML = `Checkout (<span class='cartQuantityItems'>${totalItems} items</span>)`;
+
+  const deleteBtn = document.querySelectorAll('.js-delete-btn');
+  
+  deleteBtn.forEach((button) => {
+    button.addEventListener('click', (event) => {
+      const productId = event.target.dataset.productId;
+      const indexToDelete = cart.findIndex(item => item.productId === productId);
+
+      if (indexToDelete !== -1) {
+        cart.splice(indexToDelete, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+      }
+      renderOrderSummary();
+    })
+  })
 }
 renderOrderSummary();

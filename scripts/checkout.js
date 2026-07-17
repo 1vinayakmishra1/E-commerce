@@ -13,7 +13,7 @@ export function renderOrderSummary() {
     if (matchingProduct) {
     
     cartItemsHTML += `
-    <div class="cart-item-container">
+    <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
 
       <div class="delivery-date">Delivery Date: Monday, July 20</div>
 
@@ -24,9 +24,16 @@ export function renderOrderSummary() {
           <div class="product-name">${matchingProduct.title}</div>
           <div class="product-price">$${matchingProduct.price}</div>
           <div class="product-quantity">
-            Quantity: ${cartItem.quantity} 
-            <button class="update-btn js-update-btn">Update</button>
-            <button class="delete-btn js-delete-btn" data-product-id="${matchingProduct.id}">Delete</button>
+            Quantity: <span class="js-quantity-label-${matchingProduct.id}">${cartItem.quantity}</span>
+              
+              <span class="js-quantity-editing-container js-quantity-editing-container-${matchingProduct.id}">
+                <input class="new-quantity-input js-new-quantity-input-${matchingProduct.id}" type="number" min="1" value="${cartItem.quantity}" data-testid="new-quantity-input">
+                <button class="save-btn js-save-btn" data-product-id="${matchingProduct.id}">Save</button>
+              </span>
+              
+              <button class="update-btn js-update-btn" data-product-id="${matchingProduct.id}">Update</button>
+              <button class="delete-btn js-delete-btn" data-product-id="${matchingProduct.id}">Delete</button>
+
           </div>
         </div>
 
@@ -73,6 +80,46 @@ export function renderOrderSummary() {
 
       if (indexToDelete !== -1) {
         cart.splice(indexToDelete, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+      }
+      renderOrderSummary();
+    });
+  });
+
+
+  const updateBtn = document.querySelectorAll('.js-update-btn');
+
+  updateBtn.forEach((button) => {
+    button.addEventListener('click', (event) => {
+      const productId = event.target.dataset.productId;
+      const cartItemContainer = document.querySelector(`.js-cart-item-container-${productId}`);
+
+      if (cartItemContainer) {
+        cartItemContainer.classList.add('is-editing');
+
+        const newQuantityInput = cartItemContainer.querySelector(`.js-new-quantity-input-${productId}`);
+        const currentCartItems = cart.find(item => String(item.productId) === productId);
+        if(newQuantityInput && currentCartItems) {
+          newQuantityInput.value = currentCartItems.quantity;
+        }
+      }
+    });
+  });
+
+  const saveBtn = document.querySelectorAll('.js-save-btn');
+
+  saveBtn.forEach((button) => {
+    button.addEventListener('click', (saveEvent) => {
+      const savedProductId = saveEvent.target.dataset.productId;
+      const cartItemContainer = document.querySelector(`.js-cart-item-container-${savedProductId}`);
+      
+      const newQuantityInput = cartItemContainer.querySelector(`.js-new-quantity-input-${savedProductId}`);
+      const newQuantity = Number(newQuantityInput.value);
+
+      const indexToUpdate = cart.findIndex(item => String(item.productId) === savedProductId);
+
+      if (indexToUpdate !== -1) {
+        cart[indexToUpdate].quantity = newQuantity;
         localStorage.setItem('cart', JSON.stringify(cart));
       }
       renderOrderSummary();

@@ -118,7 +118,7 @@ main {
   color: rgb(120, 120, 120);
   font-size: 15px;
 }
-.update-btn, .delete-btn {
+.update-btn, .delete-btn, .save-btn {
   background-color: transparent;
   padding: 0;
   margin-left: 3px;
@@ -132,4 +132,20 @@ main {
   font-size: 23px;
   text-decoration: none;
   cursor: pointer;
+}
+.new-quantity-input{
+  display: inline-block;
+  width: 50px;
+  font-size: 16px;
+  font-family: Roboto, Arial;
+}
+.js-quantity-editing-container {
+  display: none;
+}
+.cart-item-container.is-editing .js-quantity-editing-container {
+  display: inline-block;
+}
+.cart-item-container.is-editing .js-quantity-label,
+.cart-item-container.is-editing .js-update-btn {
+  display: none;
 }

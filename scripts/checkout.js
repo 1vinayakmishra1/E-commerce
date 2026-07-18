@@ -22,7 +22,7 @@ export function renderOrderSummary() {
         <img src="${matchingProduct.thumbnail}" alt="">
         <div class="cart-item-details">
           <div class="product-name">${matchingProduct.title}</div>
-          <div class="product-price">$${matchingProduct.price}</div>
+          <div class="product-price">$${(matchingProduct.price).toFixed(2)}</div>
           <div class="product-quantity">
             Quantity: <span class="js-quantity-label-${matchingProduct.id}">${cartItem.quantity}</span>
               
@@ -82,6 +82,7 @@ export function renderOrderSummary() {
         cart.splice(indexToDelete, 1);
         localStorage.setItem('cart', JSON.stringify(cart));
       }
+      paymentSummary();
       renderOrderSummary();
     });
   });
@@ -122,8 +123,42 @@ export function renderOrderSummary() {
         cart[indexToUpdate].quantity = newQuantity;
         localStorage.setItem('cart', JSON.stringify(cart));
       }
+      paymentSummary();
       renderOrderSummary();
-    })
-  })
+    });
+  });
+  paymentSummary();
 }
 renderOrderSummary();
+
+
+export function paymentSummary() {
+  let itemsPriceCents = 0;
+  let shippingPriceCents = 0;
+
+  cart.forEach((cartItem) => {
+    const matchingProduct = allProducts ? allProducts.find(product => product.id == cartItem.productId) : undefined;
+ 
+
+    if(matchingProduct) {
+      itemsPriceCents += (matchingProduct.price * 100) * cartItem.quantity;
+    }
+  });
+
+  if (cart.length > 0) {
+    shippingPriceCents = 499
+  } else {
+    shippingPriceCents = 0;
+  }
+
+  const totalBeforeTaxCents = itemsPriceCents + shippingPriceCents;
+  const taxCents = Math.round(totalBeforeTaxCents * 0.10);
+  const orderTotalCents = totalBeforeTaxCents + taxCents;
+
+  document.querySelector('.js-payment-items-quantity').innerHTML = getCartTotalQuantity();
+  document.querySelector('.js-items-total').innerHTML = `$${(itemsPriceCents / 100).toFixed(2)}`;
+  document.querySelector('.js-shipping-cost').innerHTML = `$${(shippingPriceCents / 100).toFixed(2)}`;
+  document.querySelector('.js-total-before-tax').innerHTML = `$${(totalBeforeTaxCents / 100).toFixed(2)}`;
+  document.querySelector('.js-estimated-tax').innerHTML = `$${(taxCents / 100).toFixed(2)}`;
+  document.querySelector('.js-order-total').innerHTML = `$${(orderTotalCents / 100).toFixed(2)}`;
+}

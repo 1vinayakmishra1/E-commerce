@@ -65,7 +65,7 @@ main {
   column-gap: 12px;
   align-items: start;
 }
-.cart-item-container {
+.cart-item-container, .payment-summary {
   margin-top: 12px;
   border: 1px solid rgb(222, 222, 222);
   border-radius: 4px;
@@ -133,6 +133,8 @@ main {
   text-decoration: none;
   cursor: pointer;
 }
+
+
 .new-quantity-input{
   display: inline-block;
   width: 50px;
@@ -149,3 +151,50 @@ main {
 .cart-item-container.is-editing .js-update-btn {
   display: none;
 }
+
+
+.payment-summary-title {
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+.payment-summary-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  font-size: 15px;
+  margin-bottom: 9px;
+}
+.payment-summary .subtotal-row div {
+  padding-top: 9px;
+}
+.subtotal-row .payment-summary-money {
+  border-top: 1px solid rgb(222, 222, 222);
+}
+.payment-summary .total-row {
+  color: rgb(177, 39, 4);
+  font-weight: 700;
+  font-size: 18px;
+  border-top: 1px solid rgb(222, 222, 222);
+  padding-top: 18px;
+}
+.place-order-button {
+  width: 100%;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-radius: 8px;
+  margin-top: 20px;
+  margin-bottom: 19px;
+}
+.button-primary {
+  color: rgb(33, 33, 33);
+  background-color: rgb(255, 216, 20);
+  border: 1px solid rgb(252, 210, 0);
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(213, 217, 217, 0.5);
+}
+.button-primary:hover {
+  background-color: rgb(247, 202, 0);
+  border: 1px solid rgb(242, 194, 0);
+}
+

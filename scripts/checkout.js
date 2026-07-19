@@ -1,8 +1,18 @@
 import { cart } from "./cart.js";
 import { getCartTotalQuantity } from "./cart.js";
+import dayjs from "https://unpkg.com/dayjs/esm/index.js";
 const allProducts = JSON.parse(localStorage.getItem('allProducts'));
 
 export function renderOrderSummary() {
+let radioValue = 7;
+const today = dayjs();
+
+const deliveryDate = today.add(radioValue, 'day');
+
+const dayOfDelivery = deliveryDate.format('dddd');
+const monthOfDelivery = deliveryDate.format('MMMM');
+const dateOfDelivery = deliveryDate.format('D');
+
   let cartItemsHTML = '';
 
   cart.forEach(cartItem => {
@@ -15,7 +25,7 @@ export function renderOrderSummary() {
     cartItemsHTML += `
     <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
 
-      <div class="delivery-date">Delivery Date: Monday, July 20</div>
+      <div class="delivery-date">Delivery Date: ${dayOfDelivery}, ${monthOfDelivery} ${dateOfDelivery}</div>
 
       <div class="cart-item-details-grid">
 

@@ -5,8 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Orders</title>
   <link rel="stylesheet" href="styles/orders.css">
+  <link rel="stylesheet" href="styles/navbar.css">
 </head>
 <body>
+
+  <div class="header">
+      <div class="header-left">
+          <img src="assets/images/amazon-logo-white.png" alt="" class="logo-img" onclick="window.location.href='amazon.html'">
+      </div>
+
+    <div class="header-center">
+      <input type="text" placeholder="Search" class="input-bar js-input-bar">
+       <div class="autocomplete-suggestions-orders js-autocomplete-suggestions"></div>
+      <button class="input-btn js-input-btn"><img src="assets/icons/search-icon.png" alt="" class="search-icon"></button>
+    </div>
+
+    <div class="header-right-orders"> 
+      
+      <button class="cart-btn">
+        <div class="cart-items js-cart-items"></div>
+        
+      <a href="checkout.html" class="cart-link">
+        <div class="cart-icon">
+          <img src="assets/icons/cart-icon.png" alt="" class="cart-btn-img">
+        </div>
+        <div class="cart-text">
+          Cart
+        </div>
+      </a>
+
+      </button>
+
+      <button class="theme-btn js-theme-btn"></button>
+      
+    </div>
+
+  </div>
+
+
   <main>
     
     <div class="page-title">Your Orders</div>
@@ -35,9 +71,40 @@
             </section>
           </header>
 
+          <div class="order-details-grid">
+            
+        <div class="product-image-container">
+          <img src="assets/images/appliance-instructions.png">
+        </div>
+
+        <div class="product-details">
+          <div class="product-name">
+            2 Slot Toaster - Black
+          </div>
+
+          <div class="product-delivery-date">
+            Arriving on: July 30
+          </div>
+
+          
+
+          <div class="product-quantity">
+            Quantity: 1
+          </div>
+        </div>
+
+        <button class="buy-again-button button-primary js-buy-again-button">
+
+            <img class="buy-again-icon" src="assets/icons/buy-again.png">
+            <span class="buy-again-message">Buy it again</span>
+
+        </button>
+
         </div>
       </div>
 
   </main>
+
+  <script type="module" src="scripts/orders.js"></script>
 </body>
 </html>

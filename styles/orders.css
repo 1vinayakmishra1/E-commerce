@@ -57,3 +57,67 @@ main {
 .right-section {
   flex-shrink: 1;
 }
+
+.order-details-grid {
+  padding: 40px 25px;
+  border: 1px solid rgb(213, 217, 217);
+  border-top: none;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  display: grid;
+  grid-template-columns: 110px 1fr 220px;
+  column-gap: 35px;
+  row-gap: 60px;
+  align-items: center;
+}
+
+.product-image-container {
+  text-align: center;
+}
+
+.product-image-container img {
+  max-width: 110px;
+  max-height: 110px;
+}
+
+.buy-again-button {
+  font-size: 15px;
+  width: 100%;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-primary {
+  color: rgb(33, 33, 33);
+  background-color: rgb(255, 216, 20);
+  border: 1px solid rgb(252, 210, 0);
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(213, 217, 217, 0.5);
+}
+
+.button-primary:hover {
+  background-color: rgb(247, 202, 20);
+  border: 1px solid rgb(242, 194, 0);
+}
+
+.buy-again-icon {
+  width: 25px;
+  margin-right: 15px;
+}
+
+.product-name {
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.product-delivery-date {
+  margin-bottom: 3px;
+}
+
+.product-quantity {
+  margin-bottom: 8px;
+}

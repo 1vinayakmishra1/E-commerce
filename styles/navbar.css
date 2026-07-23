@@ -70,6 +70,9 @@
   color: black;
   cursor: pointer;
   height: auto;
+  border: 2px solid #131921;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
 }
 .autocomplete-item {
   display: flex;
@@ -160,7 +163,33 @@ font-weight: 700;
   color: white;
   border: none;
   cursor: pointer;
+  max-width: 40px;
+  min-width: 40px;
 }
 .theme-btn img {
   max-width: 100%;
+}
+.header-right-orders {
+  display: flex;
+  flex: 0.5;
+  justify-content: center;
+  gap: 0.5rem;
+  align-items: center;
+  min-width: 120px;
+  flex-shrink: 0;
+  margin-left: 2px;
+}
+.autocomplete-suggestions-orders {
+  display: block;
+  position: absolute;
+  top: 53px;
+  left: 381px;
+  width: 717px;
+  background-color: #eef0f0;
+  color: black;
+  cursor: pointer;
+  height: auto;
+  border: 2px solid #131921;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
 }

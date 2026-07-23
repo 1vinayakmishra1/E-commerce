@@ -63,7 +63,10 @@ function renderProducts(productsToRender) {
           
       </div>`;
   });
-  document.querySelector('.js-products-grid').innerHTML = productsHTML;
+  const productsGridElement = document.querySelector('.js-products-grid');
+  if (productsGridElement) {
+    productsGridElement.innerHTML = productsHTML;
+  }
   const addBtn = document.querySelectorAll('.js-add-to-cart');
 
   addBtn.forEach((button) => {
@@ -78,7 +81,7 @@ function renderProducts(productsToRender) {
   });
 }
 
-function updateCartQuantityDisplay() {
+export function updateCartQuantityDisplay() {
   const totalItems = getCartTotalQuantity();
 
   document.querySelector('.js-cart-items').innerHTML = totalItems;
